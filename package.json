@@ -1,9 +1,31 @@
 {
   "name": "ztfv2",
-  "version": "1.0.0",
-  "description": "Zero Trust Framework v2",
+  "version": "2.0.0",
+  "description": "A Redis-backed Zero Trust security framework for Node.js/TypeScript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./middleware/fastify": {
+      "types": "./dist/middleware/fastify.d.ts",
+      "import": "./dist/middleware/fastify.mjs",
+      "require": "./dist/middleware/fastify.js"
+    },
+    "./middleware/koa": {
+      "types": "./dist/middleware/koa.d.ts",
+      "import": "./dist/middleware/koa.mjs",
+      "require": "./dist/middleware/koa.js"
+    },
+    "./middleware/hono": {
+      "types": "./dist/middleware/hono.d.ts",
+      "import": "./dist/middleware/hono.mjs",
+      "require": "./dist/middleware/hono.js"
+    }
+  },
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
@@ -15,25 +37,40 @@
     "security",
     "framework",
     "express",
-    "redis"
+    "fastify",
+    "koa",
+    "hono",
+    "redis",
+    "rbac",
+    "policy-engine",
+    "session-management"
   ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/uuid": "^10.0.0",
     "express": "^4.18.2",
-    "ioredis": "^5.3.2",
-    "uuid": "^13.0.0"
+    "ioredis": "^5.3.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.5",
     "@types/supertest": "^6.0.2",
+    "@types/uuid": "^10.0.0",
     "eslint": "^8.56.0",
     "prettier": "^3.2.4",
     "supertest": "^6.3.4",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3",
     "vitest": "^1.2.1"
+  },
+  "peerDependencies": {
+    "fastify": ">=4.0.0",
+    "koa": ">=2.0.0",
+    "hono": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "fastify": { "optional": true },
+    "koa": { "optional": true },
+    "hono": { "optional": true }
   }
 }
